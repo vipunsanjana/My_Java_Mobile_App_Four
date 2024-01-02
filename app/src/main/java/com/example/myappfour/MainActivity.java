@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_add_data;
     private Button btn_view_data;
     private String user_id = "";
+    private String log_out = "Log Out User...";
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -34,7 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth = FirebaseAuth.getInstance();
         user_id = firebaseAuth.getCurrentUser().getUid();
 
-        Toast.makeText(getApplicationContext(), user_id, Toast.LENGTH_SHORT).show();
+        if( user_id == null ){
+            Toast.makeText(getApplicationContext(), user_id, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -48,8 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            Intent intentView = new Intent(getApplicationContext(), ViewActivity.class);
 //            startActivity(intentView);
         } else if (id == R.id.btn_logout) {
-//            Intent intentEmail = new Intent(getApplicationContext(), SendEmail.class);
-//            startActivity(intentEmail);
+            firebaseAuth.signOut();
+            Intent intentEmail = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intentEmail);
+            Toast.makeText(getApplicationContext(), log_out, Toast.LENGTH_SHORT).show();
         }
 
     }
