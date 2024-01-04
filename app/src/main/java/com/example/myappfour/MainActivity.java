@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intentAdd = new Intent(getApplicationContext(), AddDataActivity.class);
             startActivity(intentAdd);
         } else if (id == R.id.btn_view) {
-//            Intent intentView = new Intent(getApplicationContext(), ViewActivity.class);
-//            startActivity(intentView);
+            Intent intentView = new Intent(getApplicationContext(), ViewActivity.class);
+            startActivity(intentView);
         } else if (id == R.id.btn_logout) {
             firebaseAuth.signOut();
             Intent intentEmail = new Intent(getApplicationContext(), LoginActivity.class);
